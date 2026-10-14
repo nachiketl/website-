@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nachiket Lokhande | Portfolio</title>
+    <meta name="description" content="Portfolio of Nachiket Lokhande, Data Analyst and Business Analyst." />
+    <style>
+      :root {
+        --bg: #0b1020;
+        --bg-soft: #121a2d;
+        --panel: #151f33;
+        --panel-2: #1c2944;
+        --text: #edf4ff;
+        --muted: #a8bbd6;
+        --primary: #59d0ff;
+        --primary-2: #7d7bff;
+        --accent: #26d0ce;
+        --success: #57e6a5;
+        --shadow: rgba(0,0,0,0.28);
+        --radius: 18px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #0b1020 0%, #10192d 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+      .container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 99; backdrop-filter: blur(10px);
+        background: rgba(11, 16, 32, 0.8); border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .nav { display: flex; justify-content: space-between; align-items: center; min-height: 72px; }
+      .brand { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.04em; }
+      .brand span { color: var(--primary); }
+      .nav-links { display: flex; gap: 18px; align-items: center; }
+      .nav-links a { color: var(--muted); font-size: 0.96rem; }
+      .nav-links a:hover { color: var(--text); }
+      .menu-toggle { display: none; }
+
+      .hero { padding: 70px 0 40px; }
+      .hero-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 36px; align-items: center; }
+      .eyebrow { display: inline-block; margin-bottom: 14px; color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.76rem; font-weight: 700; }
+      h1 { font-size: clamp(2.4rem, 4vw, 4.6rem); line-height: 1.06; margin: 0 0 18px; letter-spacing: -0.04em; }
+      h1 span { color: var(--primary); }
+      .lead { color: var(--muted); font-size: 1.08rem; max-width: 640px; margin: 0 0 24px; }
+      .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border-radius: 999px; font-weight: 700; border: 1px solid transparent; }
+      .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-2)); color: #031621; box-shadow: 0 18px 36px rgba(89, 208, 255, 0.25); }
+      .btn-secondary { color: var(--text); background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.14); }
+
+      .hero-card { position: relative; background: linear-gradient(180deg, rgba(24,36,60,0.9), rgba(17,25,45,0.9)); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 22px; box-shadow: 0 32px 60px var(--shadow); }
+      .profile-wrap { width: 100%; aspect-ratio: 4 / 5; background: linear-gradient(135deg, rgba(89,208,255,0.20), rgba(125,123,255,0.20)); border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+      .profile-photo { width: 100%; height: 100%; object-fit: cover; }
+      .mini-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+      .mini-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 12px 10px; text-align: center; }
+      .mini-box strong { display: block; font-size: 1.2rem; margin-bottom: 3px; }
+
+      .section { padding: 70px 0; }
+      .section-head { max-width: 760px; margin: 0 auto 32px; text-align: center; }
+      .section-head .tag { display: inline-block; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); font-size: 0.76rem; font-weight: 700; }
+      h2 { margin: 12px 0 8px; font-size: clamp(2rem, 3vw, 2.8rem); letter-spacing: -0.04em; }
+      .section-head p { margin: 0; color: var(--muted); }
+
+      .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 28px; align-items: center; }
+      .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 26px; }
+      .about-list { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 12px; }
+      .about-list li { display: grid; grid-template-columns: 120px 1fr; gap: 12px; color: var(--muted); }
+      .about-list li strong { color: var(--text); }
+      .stats { display: grid; grid-template-columns: repeat(3, minmax(100px, 1fr)); gap: 14px; margin-top: 22px; }
+      .stat { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 18px 12px; text-align: center; }
+      .stat strong { display: block; font-size: 1.7rem; color: var(--primary); }
+
+      .skills-grid, .project-grid, .cert-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+      .skill-box, .project-card, .cert-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 22px; }
+      .skill-box h3, .project-card h3, .cert-card h3 { margin: 0 0 12px; }
+      .progress { height: 11px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
+      .progress-bar { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+      .skill-meta { display: flex; justify-content: space-between; margin-top: 8px; color: var(--muted); font-size: 0.9rem; }
+
+      .project-card { overflow: hidden; }
+      .thumb { border-radius: 14px; overflow: hidden; margin-bottom: 18px; min-height: 180px; background: linear-gradient(135deg, rgba(89,208,255,0.15), rgba(125,123,255,0.15)); }
+      .thumb img { width: 100%; height: 180px; object-fit: cover; }
+      .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+      .pill { display: inline-flex; border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; padding: 6px 10px; font-size: 0.8rem; color: var(--muted); }
+      .project-links { display: flex; gap: 10px; margin-top: 18px; }
+      .project-links a { color: var(--text); background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.09); border-radius: 999px; padding: 10px 14px; font-size: 0.92rem; }
+
+      .cert-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .cert-card { min-height: 180px; }
+
+      .resume-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 26px; }
+      .timeline { display: grid; gap: 18px; }
+      .timeline-item { position: relative; padding-left: 20px; border-left: 2px solid rgba(89,208,255,0.5); }
+      .timeline-item::before { content: ""; width: 12px; height: 12px; border-radius: 50%; position: absolute; left: -7px; top: 5px; background: var(--primary); box-shadow: 0 0 0 5px rgba(89,208,255,0.12); }
+      .timeline-item .date { display: inline-block; color: var(--primary); font-weight: 700; margin-bottom: 8px; }
+      .timeline-item h3 { margin: 0 0 6px; }
+      .timeline-item p { margin: 0; color: var(--muted); }
+
+      .contact-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 20px; }
+      .contact-list { display: grid; gap: 14px; }
+      .contact-item { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px; }
+      .icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 10px; background: rgba(89,208,255,0.12); color: var(--primary); font-weight: 700; }
+      form { display: grid; gap: 14px; }
+      input, textarea { width: 100%; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.02); color: var(--text); padding: 14px 16px; border-radius: 12px; font: inherit; }
+      input::placeholder, textarea::placeholder { color: #9ab0cc; }
+      textarea { min-height: 160px; resize: vertical; }
+
+      footer { padding: 28px 0 40px; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.08); }
+      .footer-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+      .socials { display: flex; gap: 10px; flex-wrap: wrap; }
+      .socials a { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); }
+
+      @media (max-width: 900px) { .hero-wrap, .about-grid, .contact-grid { grid-template-columns: 1fr; } .skills-grid, .project-grid, .cert-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 700px) {
+        .nav { position: relative; min-height: 64px; }
+        .menu-toggle { display: inline-flex; background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.12); padding: 10px 12px; border-radius: 10px; font: inherit; }
+        .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; align-items: flex-start; background: rgba(11, 16, 32, 0.96); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 18px 16px 22px; }
+        .nav-links.open { display: flex; }
+        .mini-info, .stats { grid-template-columns: 1fr; }
+        .about-list li { grid-template-columns: 1fr; gap: 4px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="#home" class="brand">Nachiket <span>Lokhande</span></a>
+        <button class="menu-toggle" type="button" aria-label="Toggle menu">Menu</button>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#resume">Resume</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="container hero-wrap">
+          <div>
+            <span class="eyebrow">Hello, I am</span>
+            <h1>Nachiket <span>Lokhande</span></h1>
+            <p class="lead">Data Analyst and Business Analyst with a strong interest in turning raw data into actionable insights, dashboards, and business decisions.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="https://drive.google.com/file/d/1cNovluHkH6l4bu9iw6PpvTiEsjAioEPu/view?usp=drive_link" target="_blank" rel="noreferrer">Download CV</a>
+              <a class="btn btn-secondary" href="#projects">View Projects</a>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="profile-wrap">
+              <img class="profile-photo" src="images/about.png" alt="Nachiket Lokhande" />
+            </div>
+            <div class="mini-info">
+              <div class="mini-box"><strong>10+</strong><span>Projects</span></div>
+              <div class="mini-box"><strong>3+</strong><span>Skill Stack</span></div>
+              <div class="mini-box"><strong>1</strong><span>Portfolio</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="tag">About</span>
+            <h2>About Me</h2>
+            <p>I combine analytical thinking, business understanding, and data storytelling to help organizations make better decisions.</p>
+          </div>
+          <div class="about-grid">
+            <div class="card"><img src="images/about.png" alt="About Nachiket" style="width:100%; border-radius:18px; object-fit:cover; height:340px;" /></div>
+            <div class="card">
+              <p>Detail-oriented data analyst passionate about insights and optimization. I enjoy working with numbers, creating dashboards, and transforming business questions into clear, actionable outcomes.</p>
+              <ul class="about-list">
+                <li><strong>Name:</strong><span>Nachiket Rajendra Lokhande</span></li>
+                <li><strong>Birth:</strong><span>March 09, 1999</span></li>
+                <li><strong>Location:</strong><span>Sanvatsar, Ahmednagar, Maharashtra</span></li>
+                <li><strong>Email:</strong><span>nachiketlokhande45@gmail.com</span></li>
+                <li><strong>Phone:</strong><span>+91 9284688567</span></li>
+              </ul>
+              <div class="stats">
+                <div class="stat"><strong>3</strong><span>Years Learning</span></div>
+                <div class="stat"><strong>6</strong><span>Tools</span></div>
+                <div class="stat"><strong>100%</strong><span>Growth</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="resume" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="tag">Resume</span>
+            <h2>Education & Experience</h2>
+          </div>
+          <div class="resume-box">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="date">2023 - 2025</div>
+                <h3>MBA</h3>
+                <p>Savitribai Phule Pune University</p>
+              </div>
+              <div class="timeline-item">
+                <div class="date">2019 - 2022</div>
+                <h3>BBA in Computer Applications</h3>
+                <p>Savitribai Phule Pune University</p>
+              </div>
+              <div class="timeline-item">
+                <div class="date">2018 - 2019</div>
+                <h3>HSC</h3>
+                <p>University of Pune</p>
+              </div>
+              <div class="timeline-item">
+                <div class="date">2014 - 2015</div>
+                <h3>10th Class</h3>
+                <p>Central Board of Secondary Education</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="tag">Skills</span>
+            <h2>My Skills</h2>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-box"><h3>Power BI</h3><div class="progress"><div class="progress-bar" style="width:80%"></div></div><div class="skill-meta"><span>Advanced</span><span>80%</span></div></div>
+            <div class="skill-box"><h3>Excel</h3><div class="progress"><div class="progress-bar" style="width:85%"></div></div><div class="skill-meta"><span>Advanced</span><span>85%</span></div></div>
+            <div class="skill-box"><h3>Tableau</h3><div class="progress"><div class="progress-bar" style="width:70%"></div></div><div class="skill-meta"><span>Intermediate</span><span>70%</span></div></div>
+            <div class="skill-box"><h3>MySQL</h3><div class="progress"><div class="progress-bar" style="width:75%"></div></div><div class="skill-meta"><span>Strong</span><span>75%</span></div></div>
+            <div class="skill-box"><h3>Python</h3><div class="progress"><div class="progress-bar" style="width:65%"></div></div><div class="skill-meta"><span>Good</span><span>65%</span></div></div>
+            <div class="skill-box"><h3>Business Statistics</h3><div class="progress"><div class="progress-bar" style="width:78%"></div></div><div class="skill-meta"><span>Strong</span><span>78%</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="tag">Projects</span>
+            <h2>Featured Projects</h2>
+          </div>
+          <div class="project-grid">
+            <article class="project-card"><div class="thumb"><img src="images/project-screenshots/aviation.png" alt="Aviation Project" /></div><h3>Aviation Analysis</h3><p>Business performance and trend analysis in the aviation domain using dashboards and KPI monitoring.</p><div class="pill-row"><span class="pill">Power BI</span><span class="pill">Excel</span></div><div class="project-links"><a href="https://github.com/nachiketl/Aviation-Project" target="_blank" rel="noreferrer">GitHub</a></div></article>
+            <article class="project-card"><div class="thumb"><img src="images/project-screenshots/hr analysis.png" alt="HR Analysis Project" /></div><h3>HR Analysis</h3><p>Insights into employee trends, attrition patterns, and workforce efficiency using analytical reporting.</p><div class="pill-row"><span class="pill">SQL</span><span class="pill">Dashboard</span></div><div class="project-links"><a href="https://github.com/nachiketl/Hr-Analyst" target="_blank" rel="noreferrer">GitHub</a></div></article>
+            <article class="project-card"><div class="thumb"><img src="images/project-screenshots/healthcare.png" alt="Healthcare Project" /></div><h3>Healthcare Analysis</h3><p>Analysis of healthcare data to identify trends, treatment outcomes, and operational patterns.</p><div class="pill-row"><span class="pill">Python</span><span class="pill">Analysis</span></div><div class="project-links"><a href="https://github.com/nachiketl/Healthcare" target="_blank" rel="noreferrer">GitHub</a></div></article>
+            <article class="project-card"><div class="thumb"><img src="images/project-screenshots/stock market.png" alt="Stock Market Project" /></div><h3>Stock Market Analysis</h3><p>Explored market behavior with data interpretation and trend-based insights for better decision support.</p><div class="pill-row"><span class="pill">Statistics</span><span class="pill">Excel</span></div><div class="project-links"><a href="https://github.com/nachiketl/Stock-Market-Analysis" target="_blank" rel="noreferrer">GitHub</a></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="certifications" class="section">
+        <div class="container">
+          <div class="section-head"><span class="tag">Certifications</span><h2>Achievements</h2></div>
+          <div class="cert-grid">
+            <div class="cert-card"><h3>ExcelR Data Analyst</h3><p>Industry-focused analytics training with practical business data applications.</p></div>
+            <div class="cert-card"><h3>Data Visualization by IBM</h3><p>Developed understanding of modern visual analytics and storytelling with data.</p></div>
+            <div class="cert-card"><h3>Digital Marketing by IIT Bombay</h3><p>Learned digital strategy and performance-driven communication frameworks.</p></div>
+            <div class="cert-card"><h3>Power BI by Simplilearn</h3><p>Hands-on experience with dashboard creation and reporting automation.</p></div>
+            <div class="cert-card"><h3>Project Management by Simplilearn</h3><p>Focused on project planning, workflow management, and execution discipline.</p></div>
+            <div class="cert-card"><h3>Microsoft Azure by Simplilearn</h3><p>Built awareness of cloud-based systems, services, and practical deployment concepts.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <div class="section-head"><span class="tag">Contact</span><h2>Let’s Connect</h2></div>
+          <div class="contact-grid">
+            <div class="card">
+              <div class="contact-list">
+                <div class="contact-item"><div class="icon">📍</div><div><strong>Location</strong><br />Sanvatsar, Tal. Kopargaon, Maharashtra 423603</div></div>
+                <div class="contact-item"><div class="icon">📞</div><div><strong>Phone</strong><br /><a href="tel:+919284688567">+91 9284688567</a></div></div>
+                <div class="contact-item"><div class="icon">✉️</div><div><strong>Email</strong><br /><a href="mailto:nachiketlokhande45@gmail.com">nachiketlokhande45@gmail.com</a></div></div>
+              </div>
+            </div>
+            <div class="card">
+              <form action="mailto:nachiketlokhande45@gmail.com" method="post" enctype="text/plain">
+                <input type="text" name="name" placeholder="Your Name" required />
+                <input type="email" name="email" placeholder="Your Email" required />
+                <input type="text" name="subject" placeholder="Subject" required />
+                <textarea name="message" placeholder="Write your message..." required></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> Nachiket Lokhande. All rights reserved.</div>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/nachiket-lokhande-5bba84134/" target="_blank" rel="noreferrer">in</a>
+          <a href="https://www.instagram.com/nachiket_lokhande_/" target="_blank" rel="noreferrer">ig</a>
+          <a href="https://github.com/nachiketl" target="_blank" rel="noreferrer">gh</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('.nav-links');
+      if (toggle && nav) toggle.addEventListener('click', () => nav.classList.toggle('open'));
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
